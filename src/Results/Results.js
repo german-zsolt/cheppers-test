@@ -1,3 +1,3 @@
-const Results = () => 'results';
+const Results = () => <>results</>;
 
 export default Results;

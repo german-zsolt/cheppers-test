@@ -13,7 +13,7 @@ const Home = () => (
     <h1>{Texts.header}</h1>
     <h2>{Texts.body}</h2>
     <h2>{Texts.footer}</h2>
-    <LinkContainer to="quiz">
+    <LinkContainer to="/git quiz">
       <Button variant="primary" size="lg">
         {Texts.startButton}
       </Button>

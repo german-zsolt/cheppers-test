@@ -8,7 +8,11 @@ function* addWatcher() {
 }
 
 function* fetchQuestions() {
-  const questions = yield import("../test_response.json");
+  const questions = yield "production" === process.env.NODE_ENV
+    ? fetch(
+        "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean"
+      )
+    : import("../test_response.json");
   store.dispatch(setQuestions(questions));
 }
 

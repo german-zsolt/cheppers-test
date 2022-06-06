@@ -4,6 +4,9 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Button, ListGroup } from "react-bootstrap";
 import { replace } from "../../utils";
 import Template from "../Template";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import Loading from "../Loading";
 
 const Texts = {
   header: "You scored",
@@ -14,6 +17,11 @@ const Texts = {
 };
 
 const Results = ({ points, total, items }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (0 === total) navigate("/quiz");
+  }, [total]);
+  if (0 === total) return <Loading />;
   return (
     <Template>
       <h1>
@@ -52,6 +60,10 @@ Results.propTypes = {
 };
 
 export default connect(({ questions, answers }) => {
+  // prevent early access (cheating)
+  if (!questions.results || answers.length < questions.results.length) {
+    return { items: [], points: 0, total: 0 };
+  }
   let points = 0;
   const items = questions.results.map(({ question, correct_answer }, index) => {
     const correctAnswer = "True" === correct_answer;

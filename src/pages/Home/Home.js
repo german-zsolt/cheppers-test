@@ -14,10 +14,10 @@ const Texts = {
   startButton: "BEGIN",
 };
 
-const Home = ({ resetAnswers }) => {
+const Home = ({ resetAnswers, resetQuestions }) => {
   useEffect(() => {
     resetAnswers();
-    //resetQuestions();
+    resetQuestions();
   }, []);
   return (
     <Template>

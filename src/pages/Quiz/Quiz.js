@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { decode } from "html-entities";
 import { Button, Card } from "react-bootstrap";
-import Template from "../Template";
 import { replace } from "../../utils";
 import { addAnswer } from "../../reducers/answersSlice";
+import { requestQuestions } from "../../sagas/actions";
+import Loading from "../Loading";
+import Template from "../Template";
 
 const Texts = {
   pagination: "{index} of {total}",
@@ -14,11 +16,24 @@ const Texts = {
   false: "False",
 };
 
-const Quiz = ({ addAnswer, answeredAll, index, total, category, question }) => {
+const Quiz = ({
+  noQuestions,
+  requestQuestions,
+  addAnswer,
+  answeredAll,
+  index,
+  total,
+  category,
+  question,
+}) => {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (noQuestions) requestQuestions();
+  }, [noQuestions]);
   useEffect(() => {
     if (answeredAll) return navigate("/results");
   }, [answeredAll]);
+  if (noQuestions) return <Loading />;
   return (
     <Template>
       <h1>{category}</h1>
@@ -38,6 +53,8 @@ const Quiz = ({ addAnswer, answeredAll, index, total, category, question }) => {
   );
 };
 Quiz.propTypes = {
+  noQuestions: PropTypes.bool,
+  requestQuestions: PropTypes.func,
   addAnswer: PropTypes.func,
   answeredAll: PropTypes.bool,
   index: PropTypes.number,
@@ -48,6 +65,7 @@ Quiz.propTypes = {
 
 export default connect(
   ({ questions, answers }) => {
+    if (!questions.results) return { noQuestions: true };
     const index = answers.length;
     const total = questions.results.length;
     const answeredAll = total <= index;
@@ -60,5 +78,5 @@ export default connect(
       question: decode(questionItem?.question),
     };
   },
-  { addAnswer }
+  { requestQuestions, addAnswer }
 )(Quiz);

@@ -1,4 +1,5 @@
 import answers from "./answersSlice";
+import error from "./errorSlice";
 import questions from "./questionsSlice";
 
-export { answers, questions };
+export { answers, error, questions };

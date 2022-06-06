@@ -1,5 +1,7 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { resetError, setError } from "../../reducers/errorSlice";
 import Template from "../Template";
 import { Button } from "react-bootstrap";
 
@@ -10,38 +12,38 @@ const Texts = {
 };
 
 class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error };
-  }
-
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
-    if ("production" !== process.env.NODE_ENV) console.log(error, errorInfo);
+    this.props.setError({ error, errorInfo });
   }
-
-  resetError = () => {
-    this.setState({ hasError: false, error: null });
-  };
 
   render() {
-    if (!this.state.hasError) this.props.children;
+    const { children, hasError, error, errorInfo } = this.props;
+    if (!hasError) return children;
     return (
       <Template>
         <h1>{Texts.header}</h1>
         <div>{Texts.error}</div>
-        <div>{this.state.error}</div>
-        <Button onClick={this.resetError}>{Texts.resetButton}</Button>
+        <div>{error}</div>
+        {errorInfo && <div>{errorInfo}</div>}
+        <Button onClick={resetError}>{Texts.resetButton}</Button>
       </Template>
     );
   }
 }
 ErrorBoundary.propTypes = {
   children: PropTypes.node,
+  hasError: PropTypes.bool,
+  error: PropTypes.node,
+  errorInfo: PropTypes.node,
+  resetError: PropTypes.func,
+  setError: PropTypes.func,
 };
 
-export default ErrorBoundary;
+export default connect(
+  ({ error: { hasError, error, errorInfo } }) => ({
+    hasError,
+    error,
+    errorInfo,
+  }),
+  { resetError, setError }
+)(ErrorBoundary);

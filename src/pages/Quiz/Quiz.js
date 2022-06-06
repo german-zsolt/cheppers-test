@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { decode } from "html-entities";
-import { Button, Card, Stack } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import Template from "../Template";
+import { replace } from "../../utils";
 import { addAnswer } from "../../reducers/answersSlice";
 
 const Texts = {
@@ -18,23 +20,21 @@ const Quiz = ({ addAnswer, answeredAll, index, total, category, question }) => {
     if (answeredAll) return navigate("/results");
   }, [answeredAll]);
   return (
-    <Stack gap={5} className="col-md-5 mx-auto">
+    <Template>
       <h1>{category}</h1>
       <Card>
         <Card.Body>
           <Card.Text>{question}</Card.Text>
         </Card.Body>
       </Card>
-      <div>
-        {Texts.pagination.replace("{index}", index).replace("{total}", total)}
-      </div>
+      <div>{replace(Texts.pagination, { index, total })}</div>
       <Button variant="success" onClick={() => addAnswer(true)}>
         {Texts.true}
       </Button>
       <Button variant="danger" onClick={() => addAnswer(false)}>
         {Texts.false}
       </Button>
-    </Stack>
+    </Template>
   );
 };
 Quiz.propTypes = {

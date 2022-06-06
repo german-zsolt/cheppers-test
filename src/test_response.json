@@ -1,1 +1,85 @@
-{"response_code":0,"results":[{"category":"History","type":"boolean","difficulty":"hard","question":"Japan was part of the Allied Powers during World War I.","correct_answer":"True","incorrect_answers":["False"]},{"category":"Entertainment: Music","type":"boolean","difficulty":"hard","question":"The song &quot;Mystery Train&quot; was released by artist &quot;Little Junior&#039;s Blue Flames&quot; in 1953.","correct_answer":"True","incorrect_answers":["False"]},{"category":"History","type":"boolean","difficulty":"hard","question":"The Battle of Trafalgar took place on October 23rd, 1805","correct_answer":"False","incorrect_answers":["True"]},{"category":"Entertainment: Music","type":"boolean","difficulty":"hard","question":"The band STRFKR was also briefly known as Pyramiddd.","correct_answer":"True","incorrect_answers":["False"]},{"category":"Entertainment: Video Games","type":"boolean","difficulty":"hard","question":"All of these maps were in &quot;Tom Clancy&#039;s Rainbow Six Siege&quot; on its initial release: House, Clubhouse, Border, Consulate.","correct_answer":"False","incorrect_answers":["True"]},{"category":"History","type":"boolean","difficulty":"hard","question":"The USS Missouri (BB-63) last served in the Korean War.","correct_answer":"False","incorrect_answers":["True"]},{"category":"Science & Nature","type":"boolean","difficulty":"hard","question":"The value of one Calorie is different than the value of one calorie.","correct_answer":"True","incorrect_answers":["False"]},{"category":"Politics","type":"boolean","difficulty":"hard","question":"George Clinton, Vice President of the United States (1805-1812), is an ancestor of President Bill Clinton.","correct_answer":"False","incorrect_answers":["True"]},{"category":"Entertainment: Japanese Anime & Manga","type":"boolean","difficulty":"hard","question":"In the &quot;Kagerou Daze&quot; series, Shintaro Kisaragi is prominently shown with the color red.","correct_answer":"True","incorrect_answers":["False"]},{"category":"History","type":"boolean","difficulty":"hard","question":"The man that shot Alexander Hamilton was named Aaron Burr.","correct_answer":"True","incorrect_answers":["False"]}]}
+{
+  "response_code": 0,
+  "results": [
+    {
+      "category": "History",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Japan was part of the Allied Powers during World War I.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "The song &quot;Mystery Train&quot; was released by artist &quot;Little Junior&#039;s Blue Flames&quot; in 1953.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "category": "History",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "The Battle of Trafalgar took place on October 23rd, 1805",
+      "correct_answer": "False",
+      "incorrect_answers": ["True"]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "The band STRFKR was also briefly known as Pyramiddd.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "All of these maps were in &quot;Tom Clancy&#039;s Rainbow Six Siege&quot; on its initial release: House, Clubhouse, Border, Consulate.",
+      "correct_answer": "False",
+      "incorrect_answers": ["True"]
+    },
+    {
+      "category": "History",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "The USS Missouri (BB-63) last served in the Korean War.",
+      "correct_answer": "False",
+      "incorrect_answers": ["True"]
+    },
+    {
+      "category": "Science & Nature",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "The value of one Calorie is different than the value of one calorie.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "category": "Politics",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "George Clinton, Vice President of the United States (1805-1812), is an ancestor of President Bill Clinton.",
+      "correct_answer": "False",
+      "incorrect_answers": ["True"]
+    },
+    {
+      "category": "Entertainment: Japanese Anime & Manga",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "In the &quot;Kagerou Daze&quot; series, Shintaro Kisaragi is prominently shown with the color red.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "category": "History",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "The man that shot Alexander Hamilton was named Aaron Burr.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    }
+  ]
+}

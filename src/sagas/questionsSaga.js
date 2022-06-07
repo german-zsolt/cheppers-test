@@ -5,8 +5,10 @@ import { setQuestions } from "../reducers/questionsSlice";
 import store from "../store";
 import { QUESTIONS_REQUESTED } from "./actions";
 
-const API_URL =
-  "http://localhost:4000/api.php?amount=10&difficulty=hard&type=boolean";
+const MOCK_URL =
+  "http://[::1]:4000/api.php?amount=10&difficulty=hard&type=boolean";
+const PROD_URL =
+  "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean";
 
 function* addWatcher() {
   yield takeEvery(QUESTIONS_REQUESTED, fetchQuestions);
@@ -14,9 +16,9 @@ function* addWatcher() {
 
 function* fetchQuestions() {
   try {
-    const questions = yield IS_PROD
-      ? fetch(API_URL)
-      : import("../test_response.json");
+    const questions = yield fetch(IS_PROD ? PROD_URL : MOCK_URL).then((resp) =>
+      resp.json()
+    );
     if (questions && 0 === questions.response_code && questions.results) {
       yield call(store.dispatch, setQuestions(questions.results));
     } else {

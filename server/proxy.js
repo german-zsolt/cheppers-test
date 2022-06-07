@@ -13,7 +13,8 @@ httpProxy
     proxyRes.on("end", function () {
       const text = body.join("");
       console.log(text, "\n");
-      res.end(text);
     });
   })
   .listen(4000);
+
+console.log("Proxy server started");

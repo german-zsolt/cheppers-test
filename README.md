@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Cheppers Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Trivia challenge application with 10 questions.
 
 ## Available Scripts
 
@@ -13,6 +13,26 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+You should run a mock or a proxy server (see below) for make it work.
+
+### `npm run start:mock`
+
+Starts a mock server for development mode.\
+It does not connect to the real server for get the data.
+
+### `npm run start:proxy`
+
+Starts a proxy server for development mode.\
+It forwards all the requests to the public server.
+
+### `npm run lint`
+
+Runs the linter for the whole project.
+
+### `npm run prettier`
+
+Format all files with `prettier`.
 
 ### `npm test`
 
@@ -44,27 +64,3 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

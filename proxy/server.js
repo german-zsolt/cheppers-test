@@ -4,8 +4,6 @@ httpProxy
   .createProxyServer({
     target: "https://opentdb.com",
     changeOrigin: true,
-    followRedirects: true,
-    secure: false,
   })
   .on("proxyRes", function (proxyRes, req, res) {
     const body = [];

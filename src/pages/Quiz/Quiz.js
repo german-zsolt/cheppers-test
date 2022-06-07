@@ -9,6 +9,7 @@ import { addAnswer } from "../../reducers/answersSlice";
 import { requestQuestions } from "../../sagas/actions";
 import Loading from "../Loading";
 import Template from "../Template";
+import styles from "./Quiz.module.scss";
 
 const Texts = {
   pagination: "{index} of {total}",
@@ -36,9 +37,9 @@ const Quiz = ({
   if (noQuestions) return <Loading />;
   return (
     <Template>
-      <h1>{category}</h1>
+      <h1 className={styles.header}>{category}</h1>
       <Card>
-        <Card.Body>
+        <Card.Body className={styles.cardBody}>
           <Card.Text>{question}</Card.Text>
         </Card.Body>
       </Card>

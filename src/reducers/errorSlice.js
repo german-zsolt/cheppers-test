@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IS_PROD } from "../utils";
 
 const errorSlice = createSlice({
   name: "error",
@@ -10,9 +11,9 @@ const errorSlice = createSlice({
       state.errorInfo = null;
     },
     setError(state, action) {
+      IS_PROD || console.log(action.payload);
       state.hasError = true;
-      state.error = action.payload.error;
-      state.errorInfo = action.payload.errorInfo;
+      state.error = action.payload;
     },
   },
 });

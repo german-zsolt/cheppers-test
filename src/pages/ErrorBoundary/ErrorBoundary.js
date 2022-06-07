@@ -6,25 +6,22 @@ import Template from "../Template";
 import { Button } from "react-bootstrap";
 
 const Texts = {
-  header: "Something went wrong.",
-  error: "Error message:",
+  header: "Something went wrong:",
   resetButton: "Try again",
 };
 
 class ErrorBoundary extends Component {
-  componentDidCatch(error, errorInfo) {
-    this.props.setError({ error, errorInfo });
+  componentDidCatch(error) {
+    this.props.setError(error);
   }
 
   render() {
-    const { children, hasError, error, errorInfo } = this.props;
+    const { children, hasError, error } = this.props;
     if (!hasError) return children;
     return (
       <Template>
         <h1>{Texts.header}</h1>
-        <div>{Texts.error}</div>
-        <div>{error}</div>
-        {errorInfo && <div>{errorInfo}</div>}
+        <div>{error.message}</div>
         <Button onClick={resetError}>{Texts.resetButton}</Button>
       </Template>
     );
@@ -33,17 +30,12 @@ class ErrorBoundary extends Component {
 ErrorBoundary.propTypes = {
   children: PropTypes.node,
   hasError: PropTypes.bool,
-  error: PropTypes.node,
-  errorInfo: PropTypes.node,
+  error: PropTypes.any,
   resetError: PropTypes.func,
   setError: PropTypes.func,
 };
 
 export default connect(
-  ({ error: { hasError, error, errorInfo } }) => ({
-    hasError,
-    error,
-    errorInfo,
-  }),
+  ({ error: { hasError, error } }) => ({ hasError, error }),
   { resetError, setError }
 )(ErrorBoundary);

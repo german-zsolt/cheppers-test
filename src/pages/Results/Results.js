@@ -1,12 +1,15 @@
+import { useEffect } from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Button, ListGroup } from "react-bootstrap";
+import { decode } from "html-entities";
 import { replace } from "../../utils";
 import Template from "../Template";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import Loading from "../Loading";
+import styles from "./Results.module.scss";
 
 const Texts = {
   header: "You scored",
@@ -14,6 +17,17 @@ const Texts = {
   true: "True: ",
   false: "False: ",
   restartButton: "PLAY AGAIN?",
+  title: {
+    answer: {
+      good: "Your answer was GOOD",
+      bad: "Your answer was BAD",
+    },
+    correctAnswer: {
+      true: "The correct answer was: True",
+      false: "The correct answer was: False",
+    },
+    question: "Question {index}",
+  },
 };
 
 const Results = ({ points, total, items }) => {
@@ -33,11 +47,31 @@ const Results = ({ points, total, items }) => {
         {items.map(({ question, correctAnswer, isGood }, index) => (
           <ListGroup.Item
             key={index}
-            className={isGood ? "text-success" : "text-danger"}
+            className={classnames(
+              styles.itemContainer,
+              isGood ? "text-success" : "text-danger"
+            )}
           >
-            {isGood ? "+" : "-"}
-            {correctAnswer ? Texts.true : Texts.false}
-            {question}
+            <div
+              className={styles.icon}
+              title={Texts.title.answer[isGood ? "good" : "bad"]}
+            >
+              {isGood ? "+" : "-"}
+            </div>
+            <div
+              className={styles.correctAnswer}
+              title={
+                Texts.title.correctAnswer[correctAnswer ? "true" : "false"]
+              }
+            >
+              {correctAnswer ? Texts.true : Texts.false}
+            </div>
+            <div
+              className={styles.question}
+              title={replace(Texts.title.question, { index: index + 1 })}
+            >
+              {question}
+            </div>
           </ListGroup.Item>
         ))}
       </ListGroup>
@@ -69,7 +103,7 @@ export default connect(({ questions, answers }) => {
     const correctAnswer = "True" === correct_answer;
     const isGood = correctAnswer === answers[index];
     if (isGood) ++points;
-    return { question, correctAnswer, isGood };
+    return { question: decode(question), correctAnswer, isGood };
   });
   return { items, points, total: questions.results.length };
 })(Results);

@@ -1,0 +1,20 @@
+.itemContainer {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  flex: 0 0 auto;
+  font-size: 32px;
+  line-height: 32px;
+  width: 32px;
+}
+
+.correctAnswer {
+  flex: 0 0 auto;
+  margin-right: auto;
+}
+
+.question {
+  flex: 1 1 auto;
+}

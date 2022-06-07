@@ -8,7 +8,6 @@ const errorSlice = createSlice({
     resetError(state) {
       state.hasError = false;
       state.error = null;
-      state.errorInfo = null;
     },
     setError(state, action) {
       IS_PROD || console.log(action.payload);

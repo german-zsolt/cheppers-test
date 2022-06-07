@@ -26,7 +26,7 @@ const Texts = {
       true: "The correct answer was: True",
       false: "The correct answer was: False",
     },
-    question: "Question {index}",
+    question: "Question {index} - {category}",
   },
 };
 
@@ -44,36 +44,41 @@ const Results = ({ points, total, items }) => {
         {replace(Texts.result, { points, total })}
       </h1>
       <ListGroup>
-        {items.map(({ question, correctAnswer, isGood }, index) => (
-          <ListGroup.Item
-            key={index}
-            className={classnames(
-              styles.itemContainer,
-              isGood ? "text-success" : "text-danger"
-            )}
-          >
-            <div
-              className={styles.icon}
-              title={Texts.title.answer[isGood ? "good" : "bad"]}
+        <>
+          {items.map(({ category, question, correctAnswer, isGood }, index) => (
+            <ListGroup.Item
+              key={index}
+              className={classnames(
+                styles.itemContainer,
+                isGood ? "text-success" : "text-danger"
+              )}
             >
-              {isGood ? "+" : "-"}
-            </div>
-            <div
-              className={styles.correctAnswer}
-              title={
-                Texts.title.correctAnswer[correctAnswer ? "true" : "false"]
-              }
-            >
-              {correctAnswer ? Texts.true : Texts.false}
-            </div>
-            <div
-              className={styles.question}
-              title={replace(Texts.title.question, { index: index + 1 })}
-            >
-              {question}
-            </div>
-          </ListGroup.Item>
-        ))}
+              <div
+                className={styles.icon}
+                title={Texts.title.answer[isGood ? "good" : "bad"]}
+              >
+                {isGood ? "+" : "-"}
+              </div>
+              <div
+                className={styles.correctAnswer}
+                title={
+                  Texts.title.correctAnswer[correctAnswer ? "true" : "false"]
+                }
+              >
+                {correctAnswer ? Texts.true : Texts.false}
+              </div>
+              <div
+                className={styles.question}
+                title={replace(Texts.title.question, {
+                  category,
+                  index: index + 1,
+                })}
+              >
+                {question}
+              </div>
+            </ListGroup.Item>
+          ))}
+        </>
       </ListGroup>
       <LinkContainer to="/">
         <Button>{Texts.restartButton}</Button>
@@ -84,6 +89,7 @@ const Results = ({ points, total, items }) => {
 Results.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
+      category: PropTypes.string,
       question: PropTypes.string,
       correctAnswer: PropTypes.bool,
       isGood: PropTypes.bool,
@@ -99,11 +105,18 @@ export default connect(({ questions, answers }) => {
     return { items: [], points: 0, total: 0 };
   }
   let points = 0;
-  const items = questions.results.map(({ question, correct_answer }, index) => {
-    const correctAnswer = "True" === correct_answer;
-    const isGood = correctAnswer === answers[index];
-    if (isGood) ++points;
-    return { question: decode(question), correctAnswer, isGood };
-  });
+  const items = questions.results.map(
+    ({ category, question, correct_answer }, index) => {
+      const correctAnswer = "True" === correct_answer;
+      const isGood = correctAnswer === answers[index];
+      if (isGood) ++points;
+      return {
+        category: decode(category),
+        question: decode(question),
+        correctAnswer,
+        isGood,
+      };
+    }
+  );
   return { items, points, total: questions.results.length };
 })(Results);

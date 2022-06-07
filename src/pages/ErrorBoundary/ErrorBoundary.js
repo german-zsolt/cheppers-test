@@ -22,7 +22,7 @@ class ErrorBoundary extends Component {
       <Template>
         <h1>{Texts.header}</h1>
         <div>{error.message}</div>
-        <Button onClick={resetError}>{Texts.resetButton}</Button>
+        <Button onClick={this.props.resetError}>{Texts.resetButton}</Button>
       </Template>
     );
   }

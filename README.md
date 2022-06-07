@@ -18,13 +18,21 @@ You should run a mock or a proxy server (see below) for make it work.
 
 ### `npm run start:mock`
 
-Starts a mock server for development mode.\
+Starts the mock server for development mode.\
 It does not connect to the real server for get the data.
+
+### `npm run stop:mock`
+
+Stops the mock server.
 
 ### `npm run start:proxy`
 
-Starts a proxy server for development mode.\
+Starts the proxy server for development mode.\
 It forwards all the requests to the public server.
+
+### `npm run stop:proxy`
+
+Stops the proxy server.
 
 ### `npm run lint`
 

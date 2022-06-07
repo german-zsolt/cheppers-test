@@ -20,7 +20,7 @@ const Home = ({ resetAnswers, resetQuestions }) => {
     resetQuestions();
   }, []);
   return (
-    <Template>
+    <Template gap={5}>
       <h1>{Texts.header}</h1>
       <h2>{Texts.body}</h2>
       <h2>{Texts.footer}</h2>

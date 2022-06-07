@@ -24,6 +24,7 @@
     "start:proxy": "forever start server/proxy.js",
     "stop:mock": "forever stop server/mock.js",
     "stop:proxy": "forever stop server/proxy.js",
+    "stop": "forever stopall",
     "lint": "eslint src",
     "prettier": "prettier --write .",
     "test": "react-scripts test",
